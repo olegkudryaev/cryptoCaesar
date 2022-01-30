@@ -49,7 +49,7 @@ public class textEncryption {
             for (int j = 0; j < symbols.length(); j++) {
                 char end = symbols.charAt(j);
                 if (start == end) {
-                    char finish = symbols.charAt(j + key);
+                    char finish = symbols.charAt((j + key)%text.length());
                     str.append(finish);
                 }
             }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.concurrent.RecursiveTask;
 
 public class textForStat {
     static int key = 0;
@@ -34,15 +33,7 @@ public class textForStat {
         System.out.println("Конец");
     }
 
-//    static void fileСopy(Path pathFile) throws IOException {
-//        String str = Files.readString(pathFile);
-//        StringBuffer str2 = new StringBuffer(str);
-//        StringBuffer toWrite = decryption(str2);
-//        String text = toWrite.toString();
-//        writeFile(text);
-//    }
-
-    static void writeFile(String data) throws IOException {
+    private static void writeFile(String data) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите дерикторию для записи. Домустимый формат: txt");
         String str = scanner.nextLine();
@@ -59,7 +50,6 @@ public class textForStat {
             char c = s.charAt(i);
             for (int j = 0; j < strings2.size(); j++) {
                 if (c == strings2.get(j).charAt(0)){
-                    System.out.print(strings.get(j).charAt(0));
                     sbr.append(strings.get(j).charAt(0));
                     break;
                 }
@@ -68,7 +58,7 @@ public class textForStat {
         return sbr.toString();
     }
 
-    public static ArrayList<String> statAnalysis(String line) {
+    private static ArrayList<String> statAnalysis(String line) {
         char[] arrline;
         int count = 1;
         HashMap<String, Integer> map = new HashMap<String, Integer>();
@@ -92,14 +82,12 @@ public class textForStat {
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .collect(LinkedHashMap::new, (m, c) -> m.put(c.getKey(), c.getValue()),
                         LinkedHashMap::putAll);
-        System.out.println(collect.toString());
         ArrayList<String> strings = new ArrayList<>(collect.keySet());
 
-        System.out.println(strings.toString());
         return strings;
     }
 
-    static void formatСheck(Path format) {
+    private static void formatСheck(Path format) {
         String check = format.toString();
         if (check.endsWith(".txt")) {
             System.out.println("Формат введен корректно");

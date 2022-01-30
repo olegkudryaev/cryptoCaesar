@@ -68,7 +68,7 @@ public class bruteForce {
                 }
             }
             if (count > 10) {
-                System.out.println(count);
+//                System.out.println(count);
                 return str;
             } else {
                 key++;

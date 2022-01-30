@@ -1,9 +1,4 @@
-import test.textEncryption.*;
-import test.textDecryption.*;
-import test.testForStat.*;
-
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Scanner;
 
 import static test.textEncryption.*;
@@ -22,7 +17,8 @@ public class controller {
                 "2 - Расшифрование текста по методу Цезаря\n" +
                 "3 - Криптоанализ текста (далее необходимо выбрать метод криптоанализа)\n" +
                 "A - метод Brute force(поиск грубой силы)\n" +
-                "B - метод статистического анализа");
+                "B - метод статистического анализа\n" +
+                "exit - прекращение работы программы");
         System.out.println();
         System.out.println("Вам необходимо выбрать метод");
 
@@ -50,34 +46,13 @@ public class controller {
                     break;
                 } else {
                     System.out.println("Вы ввели не допустимые значения");
-                    break;
                 }
             }
+            else if (question.equals("exit")){
+                break;
+            }
             System.out.println("Вы ввели не допустимые значения");
-            break;
+
         }
     }
-
-
 }
-  /*  String alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюя., ";
-    char[] chars = alphabet.toCharArray();
-    String str = "привет, как дела. ты приехал.";
-    //        String str =   "еж,ыюичшащашэюбщцшисшеж,юлщбц";
-    char[] strChars = str.toCharArray();
-    char[] result = new char[strChars.length];
-
-    int keyA = 25;
-    int keyB = chars.length - keyA;
-        for (int i = 0; i < strChars.length; i++) {
-        char strChar = strChars[i];
-        for (int j = 0; j < chars.length; j++) {
-        char ch = chars[j];
-        if (strChar == ch) {
-        result[i] = chars[(j + keyA) % chars.length];
-        }
-        }
-        }
-
-        System.out.println(new String(result));
-*/
