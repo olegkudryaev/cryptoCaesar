@@ -25,7 +25,7 @@ public class textEncryption {
         System.out.println("Конец");
     }
 
-    static void formatСheck(Path format) {
+    private static void formatСheck(Path format) {
         String check = format.toString();
         if (check.endsWith(".txt")) {
             System.out.println("Формат введен корректно");
@@ -34,7 +34,7 @@ public class textEncryption {
         }
     }
 
-    static void fileСopy(Path pathFile) throws IOException {
+    private static void fileСopy(Path pathFile) throws IOException {
         String str = Files.readString(pathFile);
         StringBuffer str2 = new StringBuffer(str);
         StringBuffer toWrite = encryption(str2);
@@ -42,7 +42,7 @@ public class textEncryption {
         writeFile(text);
     }
 
-    static StringBuffer encryption(StringBuffer text) {
+    private static StringBuffer encryption(StringBuffer text) {
         StringBuffer str = new StringBuffer();
         for (int i = 0; i < text.length(); i++) {
             char start = text.charAt(i);
@@ -57,8 +57,7 @@ public class textEncryption {
         return str;
     }
 
-
-    static void writeFile(String data) throws IOException {
+    private static void writeFile(String data) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите дерикторию для записи. Домустимый формат: txt");
         String str = scanner.nextLine();

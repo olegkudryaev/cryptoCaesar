@@ -23,7 +23,7 @@ public class bruteForce {
         System.out.println("Конец");
     }
 
-    static void formatСheck(Path format) {
+    private static void formatСheck(Path format) {
         String check = format.toString();
         if (check.endsWith(".txt")) {
             System.out.println("Формат введен корректно");
@@ -32,7 +32,7 @@ public class bruteForce {
         }
     }
 
-    static void fileСopy(Path pathFile) throws IOException {
+    private static void fileСopy(Path pathFile) throws IOException {
         String str = Files.readString(pathFile);
         StringBuffer str2 = new StringBuffer(str);
         StringBuffer toWrite = textTesting(str2);
@@ -40,7 +40,7 @@ public class bruteForce {
         writeFile(text);
     }
 
-    static StringBuffer textTesting(StringBuffer text) {
+    private static StringBuffer textTesting(StringBuffer text) {
         while (true) {
             String forMethod = text.toString();
             char[] start = forMethod.toCharArray();
@@ -68,7 +68,6 @@ public class bruteForce {
                 }
             }
             if (count > 10) {
-//                System.out.println(count);
                 return str;
             } else {
                 key++;
@@ -76,7 +75,7 @@ public class bruteForce {
         }
     }
 
-    static void writeFile(String data) throws IOException {
+    private static void writeFile(String data) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите дерикторию для записи. Домустимый формат: txt");
         String str = scanner.nextLine();
