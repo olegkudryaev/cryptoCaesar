@@ -45,20 +45,17 @@ public class textDecryption {
     }
 
     private static StringBuffer decryption(StringBuffer text) {
-        String forMethod = text.toString();
-        char [] start = forMethod.toCharArray();
-        char [] result = new char[start.length];
-        int keyForDecr = chars.length - key;
-        for (int i = 0; i < start.length; i++) {
-            char stCh = start[i];
-            for (int j = 0; j < chars.length; j++) {
-                char resCh = chars[j];
-                if (stCh == resCh){
-                    result[i] = chars[(j + keyForDecr)% chars.length];
-                }
+        StringBuffer str = new StringBuffer();
+        for (int j = 0; j < text.length(); j++) {
+            char end = text.charAt(j);
+            int indexChar = symbols.indexOf(end);
+            int newIndexChar = indexChar - key;
+            while (newIndexChar < 0) {
+                newIndexChar += symbols.length();
             }
+            char encry = symbols.charAt(newIndexChar);
+            str.append(encry);
         }
-        StringBuffer str = new StringBuffer(new String(result));
         return str;
     }
 

@@ -44,16 +44,14 @@ public class textEncryption {
 
     private static StringBuffer encryption(StringBuffer text) {
         StringBuffer str = new StringBuffer();
-        for (int i = 0; i < text.length(); i++) {
-            char start = text.charAt(i);
-            for (int j = 0; j < symbols.length(); j++) {
-                char end = symbols.charAt(j);
-                if (start == end) {
-                    char finish = symbols.charAt((j + key)%text.length());
-                    str.append(finish);
-                }
+            for (int j = 0; j < text.length(); j++) {
+                char end = text.charAt(j);
+                int indexChar = symbols.indexOf(end);
+                int newIndexChar = indexChar + key;
+                newIndexChar = newIndexChar % symbols.length();
+                char encry = symbols.charAt(newIndexChar);
+                str.append(encry);
             }
-        }
         return str;
     }
 
