@@ -43,13 +43,13 @@ public class textForStat {
         Files.writeString(check, data);
     }
 
-    private  static String characterReplacement( ArrayList<String> strings,  ArrayList<String> strings2, String str){
+    private static String characterReplacement(ArrayList<String> strings, ArrayList<String> strings2, String str) {
         String s = str.toLowerCase();
         StringBuilder sbr = new StringBuilder();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             for (int j = 0; j < strings2.size(); j++) {
-                if (c == strings2.get(j).charAt(0)){
+                if (c == strings2.get(j).charAt(0)) {
                     sbr.append(strings.get(j).charAt(0));
                     break;
                 }
@@ -61,31 +61,29 @@ public class textForStat {
     private static ArrayList<String> statAnalysis(String line) {
         char[] arrline;
         int count = 1;
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         ArrayList<String> list = new ArrayList<String>();
         arrline = line.toLowerCase().toCharArray();
         for (int i = 0; i < arrline.length; i++) {
             list.add(String.valueOf(arrline[i]));
         }
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = i + 1; j < list.size(); j++) {
-                System.out.println("конец");
-                if (list.get(i).equals(list.get(j))) {
-                    count++;
-                    list.remove(j);
-                    j--;
-                }
-            }
-            map.put(list.get(i), count);
-            count = 1;
+        for (int i = 0; i < arrline.length; i++) {
+            map.put(arrline[i], 0);
         }
-        LinkedHashMap<String, Integer> collect = map.entrySet().stream()
-                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+        for (int i = 0; i < arrline.length; i++) {
+            map.put(arrline[i], map.get(arrline[i]) + 1);
+        }
+
+        LinkedHashMap<Character, Integer> collect = map.entrySet().stream()
+                .sorted(Map.Entry.<Character, Integer>comparingByValue().reversed())
                 .collect(LinkedHashMap::new, (m, c) -> m.put(c.getKey(), c.getValue()),
                         LinkedHashMap::putAll);
-        ArrayList<String> strings = new ArrayList<>(collect.keySet());
-
-        return strings;
+        ArrayList<Character> strings = new ArrayList<>(collect.keySet());
+        ArrayList<String> list2 = new ArrayList<>();
+        for (int i = 0; i < strings.size(); i++) {
+            list2.add("" + strings.get(i));
+        }
+        return list2;
     }
 
     private static void formatСheck(Path format) {
